@@ -1,13 +1,13 @@
-package br.com.laticineoapi;
+package br.com.laticinioapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LaticineoApplication {
+public class LaticinioApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LaticineoApplication.class, args);
+		SpringApplication.run(LaticinioApplication.class, args);
 	}
 
 }

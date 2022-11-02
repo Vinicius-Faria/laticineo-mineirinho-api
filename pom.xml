@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com</groupId>
-	<artifactId>laticineo-api</artifactId>
+	<artifactId>laticinio-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>laticineo</name>
 	<description>Project laticineo mineirinho</description>
