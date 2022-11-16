@@ -30,6 +30,8 @@ public class ProdutoService {
 	
 	public void update(Produto produto) {
 		var upProduto = findById(produto.getId());
+		produto.setQuantidade(upProduto.get().getQuantidade());	
+		produto.setCodigo(upProduto.get().getCodigo());
 		BeanUtils.copyProperties(produto, upProduto.get());
 		produtoRepository.save(upProduto.get());
 	}
