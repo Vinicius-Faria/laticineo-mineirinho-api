@@ -16,11 +16,11 @@ public class Produto {
 	
 	private String nome;
 	
-	private Double preco;
+	private String preco;
 	
 	private String descricao;
 	
-	private Double quantidade;
+	private String quantidade;
 
 	public Long getId() {
 		return id;
@@ -46,11 +46,11 @@ public class Produto {
 		this.nome = nome;
 	}
 
-	public Double getPreco() {
+	public String getPreco() {
 		return preco;
 	}
 
-	public void setPreco(Double preco) {
+	public void setPreco(String preco) {
 		this.preco = preco;
 	}
 
@@ -62,11 +62,11 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Double getQuantidade() {
+	public String getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Double quantidade) {
+	public void setQuantidade(String quantidade) {
 		this.quantidade = quantidade;
 	}
 	
