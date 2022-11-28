@@ -37,6 +37,14 @@ public class SaidaService {
 		return saidaRepository.findByVendaLimit1().getVenda();
 	}
 	
+	public List<Saida> findBySaidaBetweenData(LocalDateTime dataInicio, LocalDateTime dataFim){
+		return saidaRepository.findByDataBetween(dataInicio, dataFim);
+	}
+	
+	public List<Saida> findBySaidaBetweenDataAndProduto(LocalDateTime dataInicio, LocalDateTime dataFim, String nome){
+		return saidaRepository.findByDataBetweenAndNome(dataInicio, dataFim, nome);	
+	}
+	
 	public boolean alteraEstoque(Saida saida) {
 		
 		var ListProduto = produtoService.getAll();

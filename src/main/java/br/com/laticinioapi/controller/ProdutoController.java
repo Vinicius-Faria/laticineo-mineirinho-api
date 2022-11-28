@@ -21,8 +21,8 @@ import br.com.laticinioapi.service.ProdutoService;
 
 @RestController
 @RequestMapping(value = "/produto")
-@CrossOrigin("https://emporiomineirinho.vercel.app/")
-//@CrossOrigin("*")
+//@CrossOrigin("https://emporiomineirinho.vercel.app/")
+@CrossOrigin("*")
 public class ProdutoController {
 	
 	@Autowired
