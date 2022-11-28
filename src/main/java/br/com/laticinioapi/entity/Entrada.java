@@ -14,9 +14,9 @@ public class Entrada {
 	
 	private String produto;
 	
-	private Double quantidade;
+	private String quantidade;
 	
-	private Double valor;
+	private String valor;
 
 	public Long getId() {
 		return id;
@@ -34,19 +34,19 @@ public class Entrada {
 		this.produto = produto;
 	}
 
-	public Double getQuantidade() {
+	public String getQuantidade() {
 		return quantidade;
 	}
 
-	public void setQuantidade(Double quantidade) {
+	public void setQuantidade(String quantidade) {
 		this.quantidade = quantidade;
 	}
 
-	public Double getValor() {
+	public String getValor() {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(String valor) {
 		this.valor = valor;
 	}
 	
