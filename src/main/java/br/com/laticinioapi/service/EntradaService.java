@@ -25,7 +25,7 @@ public class EntradaService {
 		
 		var upProduto = produtoService.findById(produto.getId());
 		
-		var total = upProduto.get().getQuantidade() + produto.getQuantidade();
+		var total = String.valueOf(Double.valueOf(upProduto.get().getQuantidade()) + Double.valueOf(produto.getQuantidade()));
 		produto.setQuantidade(total);	
 		
 		BeanUtils.copyProperties(produto, upProduto.get());

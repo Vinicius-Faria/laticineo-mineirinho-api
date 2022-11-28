@@ -29,7 +29,9 @@ public class SaidaController {
 	public ResponseEntity<?> save(@RequestBody List<Saida> saida) {
 
 		for (Saida saidaNew : saida) {
-			saidaService.save(saidaNew);
+			if(saidaService.alteraEstoque(saidaNew)) {
+				saidaService.save(saidaNew);
+			}
 		}
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
