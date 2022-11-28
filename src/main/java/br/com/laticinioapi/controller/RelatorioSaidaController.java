@@ -17,8 +17,8 @@ import br.com.laticinioapi.service.RelatorioService;
 
 @RestController
 @RequestMapping(value = "/relatorio")
-//@CrossOrigin("https://emporiomineirinho.vercel.app/")
-@CrossOrigin("*")
+@CrossOrigin("https://emporiomineirinho.vercel.app/")
+//@CrossOrigin("*")
 public class RelatorioSaidaController {
 	
 	@Autowired

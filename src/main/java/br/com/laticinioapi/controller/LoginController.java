@@ -11,8 +11,8 @@ import br.com.laticinioapi.service.LoginService;
 
 @RestController
 @RequestMapping(value = "/login")
-//@CrossOrigin("https://emporiomineirinho.vercel.app/")
-@CrossOrigin("*")
+@CrossOrigin("https://emporiomineirinho.vercel.app/")
+//@CrossOrigin("*")
 public class LoginController {
 	
 	@Autowired

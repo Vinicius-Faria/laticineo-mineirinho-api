@@ -18,8 +18,8 @@ import br.com.laticinioapi.service.SaidaService;
 
 @RestController
 @RequestMapping(value = "/saida")
-//@CrossOrigin("https://emporiomineirinho.vercel.app/")
-@CrossOrigin("*")
+@CrossOrigin("https://emporiomineirinho.vercel.app/")
+//@CrossOrigin("*")
 public class SaidaController {
 	
 	@Autowired

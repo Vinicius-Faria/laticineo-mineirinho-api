@@ -17,8 +17,8 @@ import br.com.laticinioapi.service.EntradaService;
 
 @RestController
 @RequestMapping(value = "/entrada")
-//@CrossOrigin("https://emporiomineirinho.vercel.app/")
-@CrossOrigin("*")
+@CrossOrigin("https://emporiomineirinho.vercel.app/")
+//@CrossOrigin("*")
 public class EntradaController {
 	
 	@Autowired
