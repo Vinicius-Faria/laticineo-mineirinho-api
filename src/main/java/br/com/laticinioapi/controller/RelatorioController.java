@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.laticinioapi.dto.RelatorioDto;
 import br.com.laticinioapi.entity.ResourceDto;
+import br.com.laticinioapi.service.RelatorioEntradaService;
 import br.com.laticinioapi.service.RelatorioSaidaService;
 import br.com.laticinioapi.service.RelatorioService;
 
@@ -19,7 +20,7 @@ import br.com.laticinioapi.service.RelatorioService;
 @RequestMapping(value = "/relatorio")
 @CrossOrigin("https://emporiomineirinho.vercel.app/")
 //@CrossOrigin("*")
-public class RelatorioSaidaController {
+public class RelatorioController {
 	
 	@Autowired
 	private RelatorioService relatorioService;
@@ -27,8 +28,11 @@ public class RelatorioSaidaController {
 	@Autowired
 	private RelatorioSaidaService relatorioSaidaSerive;
 	
+	@Autowired
+	private RelatorioEntradaService relatorioEntradaService;
+	
 	@GetMapping("/saida")
-	public ResponseEntity<byte[]> byFornecedorOrAll(@RequestParam(required = false) String nome,
+	public ResponseEntity<byte[]> bySaidaEstoque(@RequestParam(required = false) String nome,
 			@RequestParam(required = false) String dataInicio,
 			@RequestParam(required = false) String dataFim) throws Exception{
 		ResourceDto dto = null;
@@ -41,6 +45,27 @@ public class RelatorioSaidaController {
 		var list = relatorioService.verificaRelatorio(relatorioDto);
 		
 		dto = relatorioSaidaSerive.gera(list);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentLength(dto.getBytes().length);
+		headers.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + dto.getFileName());
+		return new ResponseEntity<byte[]>(dto.getBytes(), headers, HttpStatus.OK);
+	}
+	
+	@GetMapping("/entrada")
+	public ResponseEntity<byte[]> byEntradaEstoque(@RequestParam(required = false) String nome,
+			@RequestParam(required = false) String dataInicio,
+			@RequestParam(required = false) String dataFim) throws Exception{
+		ResourceDto dto = null;
+		
+		var relatorioDto = new RelatorioDto();
+		relatorioDto.setNome(nome);
+		relatorioDto.setDataInicio(dataInicio.substring(1, 11));
+		relatorioDto.setDataFim(dataFim.substring(1, 11));
+		
+		var list = relatorioService.verificaRelatorioEntrada(relatorioDto);
+		
+		dto = relatorioEntradaService.gera(list);
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentLength(dto.getBytes().length);

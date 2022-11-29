@@ -11,19 +11,19 @@ import java.util.List;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
-import br.com.laticinioapi.dto.SaidaRelatorioDto;
+import br.com.laticinioapi.dto.EntradaRelatorioDto;
+import br.com.laticinioapi.entity.Entrada;
 import br.com.laticinioapi.entity.JasperDto;
 import br.com.laticinioapi.entity.ResourceDto;
-import br.com.laticinioapi.entity.Saida;
 import br.com.laticinioapi.util.Relatorio;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Service
-public class RelatorioSaidaService {
+public class RelatorioEntradaService {
 	
-	public ResourceDto gera(List<Saida> saida)  throws Exception {
+	public ResourceDto gera(List<Entrada> entrada)  throws Exception {
 		var jasperDtoList = new ArrayList<JasperDto>();
-		jasperDtoList.add(geraRelatorioCorpo(saida));
+		jasperDtoList.add(geraRelatorioCorpo(entrada));
 		return relatorio(jasperDtoList);
 	}
 	
@@ -49,27 +49,22 @@ public class RelatorioSaidaService {
 		return new ResourceDto(fileName, baos.toByteArray());
 	}
 	
-	private JasperDto geraRelatorioCorpo(List<Saida> saida) {
+	private JasperDto geraRelatorioCorpo(List<Entrada> entrada) {
 		var parameters = new HashMap<String, Object>();
 		var list = new ArrayList<>();
 		DecimalFormat df = new DecimalFormat("0.00");
 		df.setRoundingMode(RoundingMode.HALF_UP);
-		double valorTotal = 0;
 		
-		for (Saida listSaida : saida) {
-			var saidaRelatorio = new SaidaRelatorioDto();
-			saidaRelatorio.setProduto(listSaida.getNome());
-			saidaRelatorio.setQuantidade(listSaida.getQuantidade());
-			saidaRelatorio.setPreco(listSaida.getPreco());
-			saidaRelatorio.setValor(listSaida.getTotalProd());
-			valorTotal = valorTotal + Double.valueOf(listSaida.getTotalProd());
+		for (Entrada listEntrada : entrada) {
+			var entradaRelatorio = new EntradaRelatorioDto();
+			entradaRelatorio.setProduto(listEntrada.getProduto());
+			entradaRelatorio.setQuantidade(listEntrada.getQuantidade());
+			entradaRelatorio.setPreco(listEntrada.getValor());
 			
-			saidaRelatorio.setSomaTotal(String.valueOf(valorTotal));
-			
-			list.add(saidaRelatorio);
+			list.add(entradaRelatorio);
 		}
 		var subJasper = new JRBeanCollectionDataSource(list);
-		var subJasperCaminho = new ClassPathResource("reports/saida.jasper").getPath();
+		var subJasperCaminho = new ClassPathResource("reports/entrada.jasper").getPath();
 
 		return new JasperDto(subJasper, subJasperCaminho, parameters);
 	}
