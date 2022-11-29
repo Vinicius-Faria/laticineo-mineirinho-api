@@ -13,7 +13,7 @@ public interface EntradaRepository extends JpaRepository<Entrada, Long>{
 	@Query("from Entrada where data between :dataInicio and :dataFim")
 	public List<Entrada> findByDataBetween(LocalDateTime dataInicio, LocalDateTime dataFim);
 	
-	@Query("from Entrada where data between :dataInicio and :dataFim and nome = :nome")
+	@Query("from Entrada where data between :dataInicio and :dataFim and produto = :nome")
 	public List<Entrada> findByDataBetweenAndNome(LocalDateTime dataInicio, LocalDateTime dataFim, String nome);
 	
 	@Query(value = "select quantidade from Entrada where data > :dataInicio and data < :dataFim", nativeQuery = true)
