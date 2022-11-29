@@ -18,5 +18,8 @@ public interface SaidaRepository extends JpaRepository<Saida, Long> {
 	
 	@Query("from Saida where data between :dataInicio and :dataFim and nome = :nome")
 	public List<Saida> findByDataBetweenAndNome(LocalDateTime dataInicio, LocalDateTime dataFim, String nome);
+	
+	@Query(value = "select quantidade from Saida where data > :dataInicio and data < :dataFim", nativeQuery = true)
+	public List<String> findQuantidadeByData(LocalDateTime dataInicio, LocalDateTime dataFim);
 
 }

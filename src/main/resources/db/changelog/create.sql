@@ -57,3 +57,8 @@ ALTER TABLE public.saida ADD COLUMN venda text;
 INSERT INTO public.saida (nome, preco, quantidade, totalProd, total, data, venda) 
 VALUES ('0', '0', '0', '0', '0', '2022-01-01 23:00:00', '0');
 --preconditions onFail:MARK_RAN onError:HALT
+
+--changeset viniciusfaria:8
+ALTER TABLE public.entrada ADD COLUMN data timestamp without time zone;
+--preconditions onFail:MARK_RAN onError:HALT
+--precondition-sql-check expectedResult:0 select count(*) from information_schema.columns where table_schema = 'public' and table_name='produto' and column_name='link';

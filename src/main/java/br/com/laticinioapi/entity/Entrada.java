@@ -1,5 +1,7 @@
 package br.com.laticinioapi.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,16 @@ public class Entrada {
 	private String quantidade;
 	
 	private String valor;
+	
+	private LocalDateTime data;
+
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	public void setData(LocalDateTime data) {
+		this.data = data;
+	}
 
 	public Long getId() {
 		return id;

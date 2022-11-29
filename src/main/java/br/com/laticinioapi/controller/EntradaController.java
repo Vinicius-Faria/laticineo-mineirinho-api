@@ -1,6 +1,7 @@
 package br.com.laticinioapi.controller;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,7 @@ public class EntradaController {
 		entrada.setProduto(produto.getNome());
 		entrada.setQuantidade(produto.getQuantidade());
 		entrada.setValor(produto.getPreco());
+		entrada.setData(LocalDateTime.now());
 		entradaService.save(entrada);
 		
 		entradaService.alteraEstoque(produto);
