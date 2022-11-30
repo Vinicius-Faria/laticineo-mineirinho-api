@@ -2,6 +2,7 @@ package br.com.laticinioapi.controller;
 
 import java.net.URI;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class EntradaController {
 		entrada.setProduto(produto.getNome());
 		entrada.setQuantidade(produto.getQuantidade());
 		entrada.setValor(produto.getPreco());
-		entrada.setData(LocalDateTime.now());
+		entrada.setData(LocalDateTime.now(ZoneId.of("America/Sao_Paulo")));
 		entradaService.save(entrada);
 		
 		entradaService.alteraEstoque(produto);

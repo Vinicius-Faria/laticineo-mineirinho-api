@@ -1,6 +1,7 @@
 package br.com.laticinioapi.service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class SaidaService {
 	private ProdutoService produtoService;
 	
 	public Saida save(Saida saida) {
-		saida.setData(LocalDateTime.now());
+		saida.setData(LocalDateTime.now(ZoneId.of("America/Sao_Paulo")));
 		return saidaRepository.save(saida);
 	}
 	
