@@ -1,5 +1,7 @@
 package br.com.laticinioapi.service;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -53,15 +55,18 @@ public class SaidaService {
 	
 	public boolean alteraEstoque(Saida saida) {
 		
+		DecimalFormat df = new DecimalFormat("0.00");
+		df.setRoundingMode(RoundingMode.HALF_UP);
+		
 		var ListProduto = produtoService.getAll();
 		
 		for (Produto produto : ListProduto) {
 			if(saida.getNome().equals(produto.getNome())) {
-				if(Double.valueOf(produto.getQuantidade()) > Double.valueOf(saida.getQuantidade())) {
+				if(Double.valueOf(produto.getQuantidade().replace(',', '.')) > Double.valueOf(saida.getQuantidade())) {
 					var upProduto = produto;
-					var total = String.valueOf(Double.valueOf(upProduto.getQuantidade()) - Double.valueOf(saida.getQuantidade()));
+					var total = String.valueOf(Double.valueOf(upProduto.getQuantidade().replace(",", ".")) - Double.valueOf(saida.getQuantidade().replace(",", ".")));
 					
-					upProduto.setQuantidade(total);	
+					upProduto.setQuantidade(String.valueOf(df.format(Double.valueOf(total))));	
 					produtoService.save(upProduto);
 					return true;
 				}else {

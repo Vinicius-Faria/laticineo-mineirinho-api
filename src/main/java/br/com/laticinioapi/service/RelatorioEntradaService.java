@@ -58,8 +58,8 @@ public class RelatorioEntradaService {
 		for (Entrada listEntrada : entrada) {
 			var entradaRelatorio = new EntradaRelatorioDto();
 			entradaRelatorio.setProduto(listEntrada.getProduto());
-			entradaRelatorio.setQuantidade(listEntrada.getQuantidade());
-			entradaRelatorio.setPreco(listEntrada.getValor());
+			entradaRelatorio.setQuantidade(df.format(Double.valueOf(listEntrada.getQuantidade().replace(",", "."))));
+			entradaRelatorio.setPreco(df.format(Double.valueOf(listEntrada.getValor())));
 			
 			list.add(entradaRelatorio);
 		}

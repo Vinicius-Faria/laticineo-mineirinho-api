@@ -1,5 +1,7 @@
 package br.com.laticinioapi.service;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,8 +31,12 @@ public class ProdutoService {
 	}
 	
 	public void update(Produto produto) {
+		
+		DecimalFormat df = new DecimalFormat("0.00");
+		df.setRoundingMode(RoundingMode.HALF_UP);
+		
 		var upProduto = findById(produto.getId());
-		produto.setQuantidade(upProduto.get().getQuantidade());	
+		produto.setQuantidade(String.valueOf(Double.valueOf(df.format(upProduto.get().getQuantidade().replace(",", ".")))));	
 		produto.setCodigo(upProduto.get().getCodigo());
 		BeanUtils.copyProperties(produto, upProduto.get());
 		produtoRepository.save(upProduto.get());
