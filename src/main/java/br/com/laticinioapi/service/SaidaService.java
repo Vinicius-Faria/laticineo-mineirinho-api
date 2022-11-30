@@ -70,7 +70,7 @@ public class SaidaService {
 					produtoService.save(upProduto);
 					return true;
 				}else {
-					
+					return false;
 				}
 			}
 		}
@@ -118,6 +118,38 @@ public class SaidaService {
 		}
 		
 		return listData;
+	}
+	
+	public GraficoEntradaSaidaDto findValorDataSaida() {
+		return graficoValorTotal(returnData());
+	}
+	
+	public GraficoEntradaSaidaDto graficoValorTotal(List<String> listData){
+		
+		var listValorTotal = new ArrayList<Double>();
+		var listDataTotal = new ArrayList<String>();
+		var grafico = new GraficoEntradaSaidaDto();
+		
+		for(int i = 0; i< listData.size(); i++) {
+			var dataInicio = LocalDateTime.parse(listData.get(i).substring(0, 10) + " 00:00:01", formato);
+			var dataFim = LocalDateTime.parse(listData.get(i).substring(0, 10) + " 23:59:59", formato);
+			listDataTotal.add(String.valueOf(dataInicio).substring(0, 10));
+			
+			var listQuantidade = saidaRepository.findValorByData(dataInicio, dataFim);
+			double total = 0;
+			for (String string : listQuantidade) {
+				total = total + Double.valueOf(string);
+			}
+			
+			listValorTotal.add(total);
+			
+		}
+		
+		grafico.setQuantidade(listValorTotal);
+		grafico.setData(listDataTotal);
+		
+		
+		return grafico;
 	}
 
 }
