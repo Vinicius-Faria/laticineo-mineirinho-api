@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.laticinioapi.dto.ProdutoDto;
 import br.com.laticinioapi.entity.Produto;
 import br.com.laticinioapi.service.ProdutoService;
 
@@ -48,6 +49,12 @@ public class ProdutoController {
 		produto.setId(id);
 		produtoService.update(produto);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/controle")
+	public ResponseEntity<List<ProdutoDto>> allQuantidade() {
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(produtoService.getAllDto());
 	}
 	
 }
