@@ -39,7 +39,7 @@ public class EntradaService {
 		var upProduto = produtoService.findById(produto.getId());
 		
 		var total = Double.valueOf(upProduto.get().getQuantidade().replace(',', '.')) + Double.valueOf(produto.getQuantidade());
-		produto.setQuantidade(String.valueOf(df.format(Double.valueOf(total))));	
+		produto.setQuantidade(String.valueOf(df.format(Double.valueOf(total))));
 		
 		BeanUtils.copyProperties(produto, upProduto.get());
 		produtoService.save(upProduto.get());

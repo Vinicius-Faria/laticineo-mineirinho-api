@@ -63,7 +63,7 @@ public class ProdutoService {
 		df.setRoundingMode(RoundingMode.HALF_UP);
 		
 		var upProduto = findById(produto.getId());
-		produto.setQuantidade(String.valueOf(Double.valueOf(df.format(upProduto.get().getQuantidade().replace(",", ".")))));	
+		produto.setQuantidade(String.valueOf(df.format(Double.valueOf(upProduto.get().getQuantidade().replace(",", ".")))));	
 		produto.setCodigo(upProduto.get().getCodigo());
 		BeanUtils.copyProperties(produto, upProduto.get());
 		produtoRepository.save(upProduto.get());
