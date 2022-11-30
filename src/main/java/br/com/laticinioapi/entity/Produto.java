@@ -21,6 +21,16 @@ public class Produto {
 	private String descricao;
 	
 	private String quantidade;
+	
+	private String minimo;
+
+	public String getMinimo() {
+		return minimo;
+	}
+
+	public void setMinimo(String minimo) {
+		this.minimo = minimo;
+	}
 
 	public Long getId() {
 		return id;
