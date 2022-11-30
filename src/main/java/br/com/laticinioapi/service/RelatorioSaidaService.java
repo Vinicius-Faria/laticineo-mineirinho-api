@@ -59,12 +59,12 @@ public class RelatorioSaidaService {
 		for (Saida listSaida : saida) {
 			var saidaRelatorio = new SaidaRelatorioDto();
 			saidaRelatorio.setProduto(listSaida.getNome());
-			saidaRelatorio.setQuantidade(listSaida.getQuantidade());
-			saidaRelatorio.setPreco(listSaida.getPreco());
-			saidaRelatorio.setValor(listSaida.getTotalProd());
+			saidaRelatorio.setQuantidade(df.format(Double.valueOf(listSaida.getQuantidade().replace(",", "."))));
+			saidaRelatorio.setPreco(df.format(Double.valueOf(listSaida.getPreco())));
+			saidaRelatorio.setValor(df.format(Double.valueOf(listSaida.getTotalProd())));
 			valorTotal = valorTotal + Double.valueOf(listSaida.getTotalProd());
 			
-			saidaRelatorio.setSomaTotal(String.valueOf(valorTotal));
+			saidaRelatorio.setSomaTotal(String.valueOf(df.format(valorTotal)));
 			
 			list.add(saidaRelatorio);
 		}
