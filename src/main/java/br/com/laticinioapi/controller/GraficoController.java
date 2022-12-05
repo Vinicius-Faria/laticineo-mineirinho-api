@@ -12,8 +12,8 @@ import br.com.laticinioapi.service.SaidaService;
 
 @RestController
 @RequestMapping(value = "/grafico")
-@CrossOrigin("https://emporiomineirinho.vercel.app/")
-//@CrossOrigin("*")
+//@CrossOrigin("https://emporiomineirinho.vercel.app/")
+@CrossOrigin("*")
 public class GraficoController {
 	
 	@Autowired
