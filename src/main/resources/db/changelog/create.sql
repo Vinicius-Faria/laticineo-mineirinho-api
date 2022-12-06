@@ -66,4 +66,9 @@ ALTER TABLE public.entrada ADD COLUMN data timestamp without time zone;
 --changeset viniciusfaria:9
 ALTER TABLE public.produto ADD COLUMN minimo text;
 --preconditions onFail:MARK_RAN onError:HALT
---precondition-sql-check expectedResult:0 select count(*) from information_schema.columns where table_schema = 'public' and table_name='produto' and column_name='link';
+--precondition-sql-check expectedResult:0 select count(*) from information_schema.columns where table_schema = 'public' and table_name='produto' and column_name='minimo';
+
+--changeset viniciusfaria:10
+ALTER TABLE public.saida ADD COLUMN pagamento text;
+--preconditions onFail:MARK_RAN onError:HALT
+--precondition-sql-check expectedResult:0 select count(*) from information_schema.columns where table_schema = 'public' and table_name='saida' and column_name='pagamento';
