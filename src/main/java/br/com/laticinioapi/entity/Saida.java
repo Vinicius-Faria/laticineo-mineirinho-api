@@ -29,6 +29,16 @@ public class Saida {
 	private LocalDateTime data;
 	
 	private String venda; 
+	
+	private String pagamento;
+
+	public String getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(String pagamento) {
+		this.pagamento = pagamento;
+	}
 
 	public String getVenda() {
 		return venda;
