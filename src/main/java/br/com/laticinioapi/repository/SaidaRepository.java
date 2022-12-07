@@ -30,4 +30,7 @@ public interface SaidaRepository extends JpaRepository<Saida, Long> {
 	
 	@Query(value = "select * from Saida where data > :dataInicio and data < :dataFim and pagamento = 'cartao'", nativeQuery = true)
 	public List<Saida> findVendaByCartao(LocalDateTime dataInicio,  LocalDateTime dataFim);
+	
+	@Query(value = "select * from saida where venda = (select venda from saida order by data desc limit 1)", nativeQuery = true)
+	public List<Saida> findUltimaVenda();
 }

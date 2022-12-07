@@ -43,5 +43,10 @@ public class SaidaController {
 	public String verificaLogin() {
 		return saidaService.findByNumeroVenda();
 	}
+	
+	@GetMapping("/ultima-venda")
+	public List<Saida> ultimaVenda() {
+		return saidaService.findultimaVenda();
+	}
 
 }
