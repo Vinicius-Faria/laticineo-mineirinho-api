@@ -68,4 +68,8 @@ public class ProdutoService {
 		BeanUtils.copyProperties(produto, upProduto.get());
 		produtoRepository.save(upProduto.get());
 	}
+	
+	public List<Produto> findByListLimit(){
+		return produtoRepository.findByProdutoLimit();
+	}
 }
