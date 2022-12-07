@@ -57,4 +57,10 @@ public class ProdutoController {
 				.body(produtoService.getAllDto());
 	}
 	
+	@GetMapping("/list")
+	public ResponseEntity<List<Produto>> allListLimit() {
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(produtoService.findByListLimit());
+	}
+	
 }
