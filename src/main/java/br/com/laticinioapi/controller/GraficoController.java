@@ -36,5 +36,14 @@ public class GraficoController {
 	public GraficoEntradaSaidaDto byValor() {
 		return saidaService.findValorDataSaida();
 	}
+	
+	@GetMapping("/dinheiro")
+	public GraficoEntradaSaidaDto byDinheiro() {
+		return saidaService.findSaidaByDinheiro();
+	}
 
+	@GetMapping("/cartao")
+	public GraficoEntradaSaidaDto byCartao() {
+		return saidaService.findSaidaByCartao();
+	}
 }

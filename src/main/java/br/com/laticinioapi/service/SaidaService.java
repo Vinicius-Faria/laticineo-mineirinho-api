@@ -2,6 +2,7 @@ package br.com.laticinioapi.service;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -151,5 +152,56 @@ public class SaidaService {
 		
 		return grafico;
 	}
+	
+	public GraficoEntradaSaidaDto findSaidaByDinheiro() {
+		
+		var grafico = new GraficoEntradaSaidaDto();
+		var dataInicio = LocalDateTime.parse(LocalDate.now() + " 00:00:01", formato);
+		var dataFim = LocalDateTime.parse(LocalDate.now() + " 23:59:59", formato);
+		var listValorTotal = new ArrayList<Double>();
+		var listDataTotal = new ArrayList<String>();
+		Double total = 0.0;
+		
+		var listSaidaDinheiro = saidaRepository.findVendaByDinheiro(dataInicio, dataFim);
+		
+		for (Saida saida : listSaidaDinheiro) {
+			total = total + Double.valueOf(saida.getTotalProd());
+		}
+		
+		listDataTotal.add(String.valueOf(LocalDate.now()));
+		listValorTotal.add(total);
+		
+		grafico.setData(listDataTotal);
+		grafico.setQuantidade(listValorTotal);
+		
+		
+		return grafico;
+	}
+	
+	public GraficoEntradaSaidaDto findSaidaByCartao() {
+		
+		var grafico = new GraficoEntradaSaidaDto();
+		var dataInicio = LocalDateTime.parse(LocalDate.now() + " 00:00:01", formato);
+		var dataFim = LocalDateTime.parse(LocalDate.now() + " 23:59:59", formato);
+		var listValorTotal = new ArrayList<Double>();
+		var listDataTotal = new ArrayList<String>();
+		Double total = 0.0;
+		
+		var listSaidaDinheiro = saidaRepository.findVendaByCartao(dataInicio, dataFim);
+		
+		for (Saida saida : listSaidaDinheiro) {
+			total = total + Double.valueOf(saida.getTotalProd());
+		}
+		
+		listDataTotal.add(String.valueOf(LocalDate.now()));
+		listValorTotal.add(total);
+		
+		grafico.setData(listDataTotal);
+		grafico.setQuantidade(listValorTotal);
+		
+		
+		return grafico;
+	}
+
 
 }
