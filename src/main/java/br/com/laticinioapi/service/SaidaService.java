@@ -187,9 +187,9 @@ public class SaidaService {
 		var listDataTotal = new ArrayList<String>();
 		Double total = 0.0;
 		
-		var listSaidaDinheiro = saidaRepository.findVendaByCartao(dataInicio, dataFim);
+		var listSaidaCartao = saidaRepository.findVendaByCartao(dataInicio, dataFim);
 		
-		for (Saida saida : listSaidaDinheiro) {
+		for (Saida saida : listSaidaCartao) {
 			total = total + Double.valueOf(saida.getTotalProd());
 		}
 		
