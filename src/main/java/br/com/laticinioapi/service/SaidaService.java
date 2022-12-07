@@ -202,6 +202,10 @@ public class SaidaService {
 		
 		return grafico;
 	}
+	
+	public List<Saida> findultimaVenda(){
+		return saidaRepository.findUltimaVenda();
+	}
 
 
 }
