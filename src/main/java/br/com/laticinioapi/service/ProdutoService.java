@@ -25,11 +25,11 @@ public class ProdutoService {
 	}
 	
 	public List<Produto> getAll(){
-		return produtoRepository.findAll();
+		return produtoRepository.findAllByOrderByNomeAsc();
 	}
 	
 	public List<ProdutoDto> getAllDto(){
-		var list = produtoRepository.findAll();
+		var list = produtoRepository.findAllByOrderByNomeAsc();
 		var listDto = new ArrayList<ProdutoDto>();
 		
 		for (Produto produto : list) {

@@ -11,5 +11,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 	
 	@Query(value = "select * from Produto limit 10", nativeQuery = true)
 	public List<Produto> findByProdutoLimit();
+	
+	public List<Produto> findAllByOrderByNomeAsc();
 
 }
