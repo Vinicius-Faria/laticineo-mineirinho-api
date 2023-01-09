@@ -63,7 +63,7 @@ public class SaidaService {
 		
 		for (Produto produto : ListProduto) {
 			if(saida.getNome().equals(produto.getNome())) {
-				if(Double.valueOf(produto.getQuantidade().replace(',', '.')) > Double.valueOf(saida.getQuantidade())) {
+				if(Double.valueOf(produto.getQuantidade().replace(',', '.')) >= Double.valueOf(saida.getQuantidade())) {
 					var upProduto = produto;
 					var total = String.valueOf(Double.valueOf(upProduto.getQuantidade().replace(",", ".")) - Double.valueOf(saida.getQuantidade().replace(",", ".")));
 					
